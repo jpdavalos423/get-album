@@ -17,6 +17,7 @@ app.get("/login", (req, res) => {
 
 app.get("/callback", (req, res) => {
   callbackToSpotifyApi(req, res, spotifyApi);
+  // res.json({ mssg: "GET REQUEST TO /callback" });
 });
 
 app.get("/search", (req, res) => {
@@ -53,6 +54,32 @@ app.get("/current", (req, res) => {
       console.error("Something went wrong!", err);
     }
   );
+});
+
+// app.get("/search-album", (req, res) => {
+//   const { q } = req.query;
+//   spotifyApi.searchTracks(`album:${q}`).then(
+//     function (data) {
+//       res.send(data.body.id);
+//       // console.log(data.body);
+//     },
+//     function (err) {
+//       console.log("Something went wrong!", err);
+//     }
+//   );
+// });
+
+app.get("/get-track-cover", (req, res) => {
+  const { q } = req.query;
+  spotifyApi
+    .searchTracks(q)
+    .then((searchData) => {
+      const imageLink = searchData.body.tracks.items[0].album.images[0].url;
+      res.status(200).json(imageLink);
+    })
+    .catch((err) => {
+      res.send(`Error searching ${err}`);
+    });
 });
 
 module.exports = app;
