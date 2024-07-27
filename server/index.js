@@ -1,11 +1,6 @@
-// import express
-const express = require("express");
-
 // create an instance of express called app
-const app = express();
 
-const router = require("./routes");
-app.use("/api", router);
+const app = require("./routes");
 
 // create a port variable
 const port = 3050;
