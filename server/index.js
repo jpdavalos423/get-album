@@ -4,13 +4,11 @@ const express = require("express");
 // create an instance of express called app
 const app = express();
 
-// create a test router
-app.get("/hello", (req, res) => {
-  res.status(200).json({ mssg: "hello" });
-});
+const router = require("./routes");
+app.use("/api", router);
 
 // create a port variable
-const port = 5050;
+const port = 3050;
 
 // listen to our server on our localhost
 app.listen(port, () => {
