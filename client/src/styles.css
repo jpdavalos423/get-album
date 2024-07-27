@@ -1,0 +1,39 @@
+body {
+  font-family: "Helvetica Neue";
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+main {
+  border-radius: 1rem;
+  background-color: hsl(0, 0%, 19%);
+  color: white;
+  width: 60rem;
+
+  padding: 2rem;
+}
+
+h1 {
+  line-height: normal;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 15%;
+  margin-bottom: 1rem;
+}
+
+.now__playing {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5rem;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+}

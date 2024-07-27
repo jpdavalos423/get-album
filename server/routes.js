@@ -11,13 +11,12 @@ const spotifyApi = new SpotifyWebApi({
   redirectUri: process.env.REDIRECT_URL,
 });
 
-app.get("/login", (req, res) => {
+app.get("/", (req, res) => {
   loginToSpotifyApi(req, res, spotifyApi);
 });
 
 app.get("/callback", (req, res) => {
   callbackToSpotifyApi(req, res, spotifyApi);
-  // res.json({ mssg: "GET REQUEST TO /callback" });
 });
 
 app.get("/search", (req, res) => {
@@ -45,10 +44,40 @@ app.get("/play", (req, res) => {
     });
 });
 
-app.get("/current", (req, res) => {
+app.get("/current-cover", (req, res) => {
   spotifyApi.getMyCurrentPlayingTrack().then(
     function (data) {
-      console.log("Now playing: " + data.body.item.name);
+      res.status(200).json(data.body.item.album.images[1].url);
+    },
+    function (err) {
+      console.error("Something went wrong!", err);
+    }
+  );
+});
+app.get("/current-track", (req, res) => {
+  spotifyApi.getMyCurrentPlayingTrack().then(
+    function (data) {
+      res.status(200).json(data.body.item.name);
+    },
+    function (err) {
+      console.error("Something went wrong!", err);
+    }
+  );
+});
+app.get("/current-artist", (req, res) => {
+  spotifyApi.getMyCurrentPlayingTrack().then(
+    function (data) {
+      res.status(200).json(data.body.item.artists[0].name);
+    },
+    function (err) {
+      console.error("Something went wrong!", err);
+    }
+  );
+});
+app.get("/current-album", (req, res) => {
+  spotifyApi.getMyCurrentPlayingTrack().then(
+    function (data) {
+      res.status(200).json(data.body.item.album.name);
     },
     function (err) {
       console.error("Something went wrong!", err);
@@ -56,25 +85,12 @@ app.get("/current", (req, res) => {
   );
 });
 
-// app.get("/search-album", (req, res) => {
-//   const { q } = req.query;
-//   spotifyApi.searchTracks(`album:${q}`).then(
-//     function (data) {
-//       res.send(data.body.id);
-//       // console.log(data.body);
-//     },
-//     function (err) {
-//       console.log("Something went wrong!", err);
-//     }
-//   );
-// });
-
 app.get("/get-track-cover", (req, res) => {
   const { q } = req.query;
   spotifyApi
     .searchTracks(q)
     .then((searchData) => {
-      const imageLink = searchData.body.tracks.items[0].album.images[0].url;
+      const imageLink = searchData.body.tracks.items[0].album.images[1].url;
       res.status(200).json(imageLink);
     })
     .catch((err) => {
