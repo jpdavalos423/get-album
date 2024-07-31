@@ -10,19 +10,24 @@ main {
   border-radius: 1rem;
   background-color: hsl(0, 0%, 19%);
   color: white;
-  width: 60rem;
-  height: 30rem;
+  width: 40rem;
+  height: 22.5rem;
   padding: 2rem;
+  line-height: normal;
 }
 
 h1 {
-  line-height: normal;
   margin-bottom: 1rem;
 }
 
 .logo {
-  width: 15%;
-  margin-bottom: 1rem;
+  width: 30%;
+  /* margin-bottom: 1rem; */
+}
+
+.cover__play {
+  max-width: 100%;
+  width: 100rem;
 }
 
 .now__playing {
@@ -34,14 +39,28 @@ h1 {
 .now__playinginfo {
   display: flex;
   justify-content: flex-start;
-  gap: 5rem;
+  gap: 1rem;
 }
 
 .description {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 1rem;
+  gap: 0.5rem;
+}
+
+.song__title {
+  font-size: 2rem;
+}
+
+.artist__name {
+  font-size: 1.5rem;
+}
+
+.album__name {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: normal;
 }
 
 .now__playingcontrol {
@@ -49,13 +68,7 @@ h1 {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 35%;
-  svg {
-    fill: hsl(0, 0%, 90%);
-    width: 2.5rem;
-    height: 2rem;
-    transition: all 0.1s ease-in-out;
-  }
+  width: 40%;
 
   .play__button,
   .backward__button,
@@ -66,4 +79,11 @@ h1 {
       fill: hsl(0, 0%, 100%);
     }
   }
+}
+
+svg {
+  fill: hsl(0, 0%, 90%);
+  width: 2.5rem;
+  height: 2rem;
+  transition: all 0.1s ease-in-out;
 }

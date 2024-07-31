@@ -6,8 +6,6 @@ function App() {
 
   return (
     <main>
-      <img src="/Spotify_Logo_RGB_Green.png" alt="spotify logo" className="logo"/>
-
       <NowPlaying/>
     </main>
   );
