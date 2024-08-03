@@ -2,11 +2,9 @@
 import NowPlaying from "./components/nowPlaying";
 
 function App() {
-  
-
   return (
     <main>
-      <NowPlaying/>
+      <NowPlaying />
     </main>
   );
 }
